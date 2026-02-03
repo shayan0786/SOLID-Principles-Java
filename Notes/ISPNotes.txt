@@ -1,0 +1,58 @@
+// No client should be force to use unnecessary methods that not support it
+// No class should be forced tuo implements the unnecessary methods which not support that method and interface
+// Bad ISP -->
+interface Worker{
+    void work();
+    void sleep();
+    void eat();
+}
+class Robot implements Worker{
+    public void work(){
+
+    }
+    public void eat(){
+        //No usage
+    }
+    public void sleep(){
+        //no usage
+    }
+} //Now we can see it should have to implements that code unnecessary which can cause bug so 
+// Small interface which far better than large one
+
+package Code;
+// Good ISP here we see different interface for different use only
+interface Printable{
+    void print();
+}
+interface Scanable{
+    void scan();
+}
+interface Faxable{
+    void fax();
+}
+class SimplePrinter implements Printable {
+    public void print(){
+        System.out.println("Printing......");
+    }
+}
+class AllInOnePrinter implements Printable ,Scanable ,Faxable{
+    public void print(){
+        System.out.println("Printing...... all in one...");
+    }
+    public void scan(){
+        System.out.println("Scan....");
+    }
+    public void fax(){
+        System.out.println("Fax...");
+    }
+}
+public class ISPExample {
+    public static void main(String[] args) {
+        Printable p = new SimplePrinter();
+        p.print();
+        AllInOnePrinter all = new AllInOnePrinter();
+        all.print();
+        all.scan();
+        all.fax();
+    }
+}
