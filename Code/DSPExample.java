@@ -1,0 +1,61 @@
+package Code;
+// // DSP 
+// // Dependency Inversion Principle  it states that 
+// // high module should not depend on low level module 
+// // both should use abstraction
+// // Depend on Interface not on Concrete class
+// // Bad DIP ------>
+// class Keyboard{
+//     void type(){
+//         System.out.println("Type.....");
+//     }
+// }
+// class Laptop{
+//     Keyboard k = new Keyboard();
+//     void work(){
+//         k.type();
+//     }
+// }
+// Now if we want to add another input device we have to change the code and also the 
+// important logic which can crete bugs and which down the flexibility]
+
+// Good DIP ---->
+
+
+//Step 1---> Using interface
+interface InputDevice{
+    void input();
+}
+
+// Step 2---> Using Abstraction
+class Keyboard implements InputDevice{
+    public void input(){
+        System.out.println("Typing .....");
+    }
+}
+class Mouse implements InputDevice{
+    public void input(){
+        System.out.println("Click.....");
+    }
+}
+// Highe level class
+class Laptop{
+    InputDevice device;
+    Laptop(InputDevice device){
+        this.device = device;
+    }
+    void work(){
+        device.input();
+    }
+}
+// Main Class
+public class DSPExample {
+    public static void main(String[] args) {
+        Keyboard k = new Keyboard();
+        Laptop l1 = new Laptop(k);
+        l1.work();
+        Mouse m = new Mouse();
+        Laptop l2 =  new Laptop(m);
+        l2.work();
+    }
+}
