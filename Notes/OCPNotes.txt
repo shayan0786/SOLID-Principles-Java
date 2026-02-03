@@ -1,0 +1,43 @@
+ OCP ---> Open/close principle
+ it is to add functionality in code without changing the existing structure
+ A class should allowed to add new functionaltties withot chaning the existing code
+ Extend ✅ Modify ❌
+ Withot OCP ------
+                 |
+                 |
+                 |
+ class Calulator{
+     Calulator(String type,double a double b){
+         if(type.equals("add")){
+             return a+b;
+         }
+         else if(type.equals("sub")){
+             return a-b;
+         }
+     }
+ } See if we want to add the multiply and Divide then we have to change the existing code 
+ that can make bugs in existing means it have risk
+
+
+
+ With OCP using polymorphism and interface
+
+interface Operation{
+    double calculate(double a,double b);
+}
+class Add implements Operation{
+    public double calculate(double a,double b){
+        return a+b;
+    }
+}
+class Sub implements Operation{
+    public double calculate(double a,double b){
+        return a-b;
+    }
+}
+class Calculator{
+    public double calculate(Operation op,double a,double b){
+        return op.calculate(a, b);
+    }
+}
+ Now we can extend the code  without changing actual structure

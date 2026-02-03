@@ -1,0 +1,47 @@
+ LSP ---> Liskov Substitution Principle 
+ it shold inherit it parent class withoput chaning it menaing or works of the patrent class
+ if a child cannot behav it likes parent , it should not inherit 
+ parent obj = new Class;  it shuld run proply as parnets works 
+ if breaks LSP fail
+
+import javax.management.RuntimeErrorException;
+import java.util.*;
+class Bird{
+    void fly(){
+        System.out.println("Flying...1");
+    }
+}
+class Penguin extends Bird{
+    void fly(){
+        throw new RuntimeErrorException(null, "Can not fly");This crash the code 
+    }
+}
+interface Flyable{
+    void fly1();
+}
+class Sparrow implements Flyable{
+    public void fly1(){
+        System.out.println("Flying....");
+    }
+}
+class Penguin1{
+    void swim(){
+        System.out.println("Swiming....");
+    }
+}
+public class LSPExample {
+    public static void main(String[] args) {
+        Flyable f = new Sparrow();
+        f.fly1();
+        Penguin1 p = new Penguin1();
+        p.swim();
+        Bird b = new Penguin();
+        b.fly();  crash the code because it can not use it ,methods prioperly
+    }
+}
+ O/p
+ Flying....
+ Swiming....
+ Exception in thread "main" javax.management.RuntimeErrorException: Can not fly
+         at Penguin.fly(LSPExample.java:16)
+         at LSPExample.main(LSPExample.java:39)

@@ -1,0 +1,33 @@
+ SRP ----> Single Responsibilities Principlle
+ It state that make one class for one responnsibliteies and one reason to chnage 
+ It give maitance and reuasbiility and test and better readiblity
+
+
+ class Report{
+     void genrateReport(){}
+     void printReport(){}
+     void saveToFile(){}
+ }  This aginst the princiople of SRP because we have make one class and threee responsibilties and 
+ method so SRP GOOD 
+             |
+             |
+             |
+             \/
+
+Three different file three different ,method easy to maintaion
+
+class ReportGenerate{
+    void genrateReport(){
+        System.out.println("Genrate...");
+    }
+}
+class ReportPrint{
+    void printReportr(){
+        System.out.println("Print.....");
+    }
+}
+class ReportSave{
+    void saveToFile(){
+        System.out.println("Save.....");
+    }
+}
